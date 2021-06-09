@@ -8,12 +8,15 @@ spring:
          maxLifetime: 1800000
          minimumIdle: 10
          maximum-pool-size: 10
-      url: jdbc:mysql://localhost:3306/?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Taipei&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url: jdbc:mysql://localhost:3306/authDB?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Taipei&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
       password: 
       driver-class-name: com.mysql.jdbc.Driver
+      initialization-mode: always
    jpa:
       database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
       show-sql: true
       hibernate:
          ddl-auto: none
+         naming:
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
