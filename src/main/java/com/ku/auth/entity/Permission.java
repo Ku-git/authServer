@@ -1,5 +1,7 @@
 package com.ku.auth.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +13,7 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-public class Permission {
+public class Permission implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

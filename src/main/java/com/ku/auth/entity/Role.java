@@ -1,5 +1,6 @@
 package com.ku.auth.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import lombok.Data;
 @Entity
 @Table
 @Data
-public class Role {
+public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

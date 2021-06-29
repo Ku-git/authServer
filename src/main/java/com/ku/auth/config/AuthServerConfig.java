@@ -42,7 +42,9 @@ public class AuthServerConfig implements AuthorizationServerConfigurer {
 	
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.checkTokenAccess("isAuthenticated()").tokenKeyAccess("permitAll()");
+		security
+			.checkTokenAccess("isAuthenticated()")//允許/oauth/check_token被調用
+			.tokenKeyAccess("permitAll()");//允許/oauth/token調用
 	}
 
 	@Override
