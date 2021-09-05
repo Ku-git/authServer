@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -34,6 +35,8 @@ public class AuthServerConfig implements AuthorizationServerConfigurer {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private DataSource dataSource;
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@Bean
 	public TokenStore jdbcTokenStore() {
@@ -60,7 +63,9 @@ public class AuthServerConfig implements AuthorizationServerConfigurer {
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(jdbcTokenStore());
-		endpoints.authenticationManager(authenticationManager);
+		endpoints.authenticationManager(authenticationManager)
+		.userDetailsService(userDetailsService)
+		.reuseRefreshTokens(false);
 	}
 
 }
